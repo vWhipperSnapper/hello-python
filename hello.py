@@ -29,7 +29,7 @@ def hello():
     </html>
     """.format(COLOR,my_uuid,)
     
-    {}</br>
+    
 
 if COLOR==GREEN
     	</center>
