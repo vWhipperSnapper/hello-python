@@ -8,13 +8,16 @@ my_uuid = str(uuid.uuid1())
 BLUE = "#0099FF"
 GREEN = "#33CC33"
 
-COLOR = GREEN
+COLOR = BLUE
 
 @app.route('/')
 def hello():
 
     if COLOR==GREEN:
         myimage='<img src="http://teenagemutantninjaturtles.com/wp-content/uploads/2013/03/Ninja-Turtles-TMNT-Pizza.jpg">'
+
+    if COLOR==BLUE:
+        myimage='<img src="http://i.imgur.com/ebbcdV9.png">'
 
     return """
     <html>
