@@ -1,5 +1,7 @@
 import os
 import uuid
+import redis
+import json
 from flask import Flask
 
 
@@ -10,6 +12,11 @@ GREEN = "#33CC33"
 
 COLOR = BLUE
 
+rediscloud_service = json.loads(os.environ['VCAP_SERVICES'])['rediscloud'][0]
+credentials = rediscloud_service['credentials']
+r = redis.Redis(host=credentials['hostname'], port=credentials['port'], password=credentials['password'])
+
+
 @app.route('/')
 def hello():
 
@@ -18,6 +25,10 @@ def hello():
 
     if COLOR==BLUE:
         myimage='<img src="http://i.imgur.com/ebbcdV9.png">'
+
+    
+    r.incr('HITCOUNT')
+    PAGEHITS = r.get('HITCOUNT')
 
     return """
     <html>
@@ -28,10 +39,12 @@ def hello():
 
     {}
     </center>
+    
+    {}</br>
 
     </body>
     </html>
-    """.format(COLOR,my_uuid,myimage)
+    """.format(COLOR,my_uuid,PAGEHITS,myimage)
 
 
     
