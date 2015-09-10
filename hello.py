@@ -10,7 +10,7 @@ my_uuid = str(uuid.uuid1())
 BLUE = "#0099FF"
 GREEN = "#33CC33"
 
-COLOR = BLUE
+COLOR = GREEN
 
 rediscloud_service = json.loads(os.environ['VCAP_SERVICES'])['rediscloud'][0]
 credentials = rediscloud_service['credentials']
@@ -20,15 +20,23 @@ r = redis.Redis(host=credentials['hostname'], port=credentials['port'], password
 @app.route('/')
 def hello():
 
+    
+    r.incr('HITCOUNT')
+    PAGEHITS = r.get('HITCOUNT')
+
+   # int(PAGEHITS)
+
+    #if (PAGEHITS%2==0):
+     #   COLOR==GREEN
+
+   # if (PAGEHITS%2!=0):
+    #    COLOR==BLUE
+
     if COLOR==GREEN:
         myimage='<img src="http://teenagemutantninjaturtles.com/wp-content/uploads/2013/03/Ninja-Turtles-TMNT-Pizza.jpg">'
 
     if COLOR==BLUE:
         myimage='<img src="http://i.imgur.com/ebbcdV9.png">'
-
-    
-    r.incr('HITCOUNT')
-    PAGEHITS = r.get('HITCOUNT')
 
     return """
     <html>
@@ -37,9 +45,10 @@ def hello():
     <center><h1><font color="white">Hi, I'm GUID:<br/>
     {}</br>
 
-    {}
-    </center>
-    
+    <center><h1><font color="white">PAGE HITS:<br/>
+    {}</br>
+
+    <center>	
     {}</br>
 
     </body>
