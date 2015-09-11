@@ -25,17 +25,17 @@ r = redis.Redis(host=credentials['hostname'], port=credentials['port'], password
 @app.route('/')
 def hello():
 
-    
+
     r.incr('HITCOUNT')
     PAGEHITS = r.get('HITCOUNT')
 
-   # int(PAGEHITS)
+    PAGEHITSINT = int(PAGEHITS)
 
-    #if (PAGEHITS%2==0):
-     #   COLOR==GREEN
+    if (PAGEHITSINT%2==0):
+        COLOR=GREEN
 
-   # if (PAGEHITS%2!=0):
-    #    COLOR==BLUE
+    if (PAGEHITSINT%2!=0):
+        COLOR=BLUE
 
     if COLOR==GREEN:
         myimage='<img src="http://teenagemutantninjaturtles.com/wp-content/uploads/2013/03/Ninja-Turtles-TMNT-Pizza.jpg">'
@@ -53,7 +53,7 @@ def hello():
     <center><h1><font color="white">PAGE HITS:<br/>
     {}</br>
 
-    <center>	
+    <center>
     {}</br>
 
     </body>
@@ -61,7 +61,7 @@ def hello():
     """.format(COLOR,my_uuid,PAGEHITS,myimage)
 
 
-    
+
 
 if __name__ == "__main__":
 	app.run(debug=True,host='0.0.0.0', port=int(os.getenv('VCAP_APP_PORT', '5000')))
