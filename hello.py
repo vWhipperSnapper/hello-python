@@ -2,7 +2,10 @@ import os
 import uuid
 import redis
 import json
+import newrelic.agent
 from flask import Flask
+
+newrelic.agent.initialize()
 
 
 app = Flask(__name__)
@@ -15,6 +18,8 @@ COLOR = GREEN
 rediscloud_service = json.loads(os.environ['VCAP_SERVICES'])['rediscloud'][0]
 credentials = rediscloud_service['credentials']
 r = redis.Redis(host=credentials['hostname'], port=credentials['port'], password=credentials['password'])
+
+
 
 
 @app.route('/')
