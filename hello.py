@@ -38,10 +38,10 @@ def hello():
         COLOR=BLUE
 
     if COLOR==GREEN:
-        myimage='<img src="http://teenagemutantninjaturtles.com/wp-content/uploads/2013/03/Ninja-Turtles-TMNT-Pizza.jpg">'
+        myimage='<img src="http://24.media.tumblr.com/8918ba2824dae475b8dce944b3e6a4cb/tumblr_mzh3niLBCc1slkacvo1_400.gif">'
 
     if COLOR==BLUE:
-        myimage='<img src="http://i.imgur.com/ebbcdV9.png">'
+        myimage='<img src="http://media.tumblr.com/tumblr_m2xq19lCge1qc9lhz.gif">'
 
     return """
     <html>
