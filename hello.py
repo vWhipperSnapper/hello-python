@@ -32,15 +32,15 @@ def hello():
     PAGEHITSINT = int(PAGEHITS)
 
     if (PAGEHITSINT%2==0):
-        COLOR=GREEN
-
-    if (PAGEHITSINT%2!=0):
         COLOR=BLUE
 
-    if COLOR==GREEN:
-        myimage='<img src="http://24.media.tumblr.com/8918ba2824dae475b8dce944b3e6a4cb/tumblr_mzh3niLBCc1slkacvo1_400.gif">'
+    if (PAGEHITSINT%2!=0):
+        COLOR=GREEN
 
     if COLOR==BLUE:
+        myimage='<img src="http://24.media.tumblr.com/8918ba2824dae475b8dce944b3e6a4cb/tumblr_mzh3niLBCc1slkacvo1_400.gif">'
+
+    if COLOR==GREEN:
         myimage='<img src="http://media.tumblr.com/tumblr_m2xq19lCge1qc9lhz.gif">'
 
     return """
